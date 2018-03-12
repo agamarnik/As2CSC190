@@ -9,6 +9,26 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script>
+		function genControl(author, msg, ts)
+		{
+			var newctrl = $('<div class='row'><span id= 'author'></span><span id= 'ts'></span> </div>');
+	
+		}
+
+		function displayPosts(arrPosts)
+		{
+			for(var i=0; i<arrPosts.length; i++)
+			{
+				var post = arrPosts[i];
+				var author = post['author'];
+				var msg = post['post'];
+				var ts = post['ts'];
+				var newCtrl = genCentrol(author, msg, ts);
+				$('#container').append(newCtrl);
+			}
+
+		}
+		
                 function retrievePosts(){
 
                             $.post("servlets/data_ops.php",
@@ -16,19 +36,20 @@
                                 op: "getPosts"
                             },
                             function(data, status){
-                                if(data=="ok"){
-                                        window.location = "inbox.php";
-                                }else{
-                                        alert("ERROR!");
-                                }
+				var arrPosts = JSON.parse(data);
+				displayPosts(arrPosts);
+                               
                             });
                 }
+		setretrievePosts();
         </script>
 </head>
 <body>
 
 <div class="container">
-        LIST.PHP
+        <input type="author" id="author"> <br />
+	<input type="msg" id="post"> <br />
+	<button id="btnSubmit" onclick="displayPosts()">Post</button>
 
 </div>
 
