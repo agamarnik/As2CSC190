@@ -1,4 +1,5 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
+<!-- Andy- Change verifyPwd to retrievePost, remove everything about "data" -->
 <html lang="en">
 <head>
   <title>Bootstrap Example</title>
